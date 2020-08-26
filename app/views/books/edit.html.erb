@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 main">
+      <h1>Editing Book</h1>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <%= "error" %>
+          <li><%= message %></li>
+      <% end %>
+      </ul>
+      <%= form_for(@book) do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title, class: "form" %>
+        <p>Opinion</p>
+        <%= f.text_area :body, class: "form" %><br>
+        <%= f.submit 'Update Book', :class=>"btn btn-primary create" %>    
+      <% end %>
+
+      <%= link_to("Show",book_path) %>
+      <%= link_to("Back",books_path) %>
+    </div>
+  </div>
+  <p class="copy-right">CopyRight Infratop.inc</p>
+</div>
+

@@ -1,0 +1,60 @@
+<body>
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+      <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.png", size: "100x100" %>
+      <table class="table table-striped">
+        <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= current_user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to user_path(current_user),class:"btn btn-default edit" do %>
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+      <% end %>
+      <%= render 'books/new', book: @book %>
+  </div>
+
+      <div class="col-xs-9">
+          <h2 class="books-title">Users</h2>
+          <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>image</th>
+                  <th>name</th>
+                  <th></th>
+              </tr>
+          <thead>
+          <tbody>
+          <% @users.each do |user| %>
+              <tr class="roop">
+                  <td><%= attachment_image_tag user, :profile_image, fallback: "no-image.png", size: "40x40" %></td>
+                  <td class="roop2"><%= user.name %></td>
+                  <td><%= link_to "Show", user_path(user.id) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="copy-right">CopyRight Infratop.inc</p>
+</div>
+
+</body>
