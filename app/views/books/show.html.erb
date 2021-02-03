@@ -16,7 +16,7 @@
         </tr>
         </tbody>
       </table>
-      <%= link_to user_path(current_user), class:"btn btn-default edit" do %>
+      <%= link_to edit_user_path(current_user), class:"btn btn-default edit" do %>
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
       <% end %>
       <h2>New book</h2>
@@ -39,12 +39,13 @@
             <th></th>
             <th></th>
             <th></th>
-            </tr>
-          <thead>
+          </tr>
+        <thead>
           <tbody>
               <tr class="roop">
                   <%= link_to user_path(@book.user.id) do %>
-                  <td class="roop2"><%= attachment_image_tag @book.user, :profile_image, fallback: "no-image.png", size: "40x40" %><br><%= link_to @book.user.name, user_path(@book.user.id) %></td>
+                  <td class="roop2"><%= attachment_image_tag @book.user, :profile_image, fallback: "no-image.png", size: "40x40" %><br>
+                  <%= link_to @book.user.name, user_path(@book.user.id) %></td>
                   <% end %>
                   <td class="roop2"><%= @book.title %></td>
                   <td class="roop2"><%= @book.body %></td>
@@ -55,8 +56,44 @@
               </tr>
           </tbody>
       </table>
+    
+  
+      <ol>
+        <% @book.post_comments.each do |post_comment| %>
+          <li class="comment">
+            <div class="comment-body bb">
+              <div class="comment-avatar">
+                <div class="avatar">
+                <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no-image.png", size: "40x40" %>
+                </div>
+              </div>
+              <div class="comment-text">
+                <div class="comment-author clearfix">
+                <%= link_to post_comment.user.name, user_path(@book.user.id) %></td>
+            
+                </div>
+                <div class="comment-entry"><%= post_comment.comment %></div>
+                <% if post_comment.user == current_user %>
+                  <div>
+                  <% if current_user == post_comment.user %>
+                    <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment), method: :delete, class: "btn btn-danger" %>
+                  <% end %>
+                  </div>
+                <% end %>
+              </div>bo
+            </div>
+          </li>
+        <% end %>e
+      </ol>
+
+      <%= form_for [@book, @post_comment] do |f| %>
+            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+        <%= f.submit "送信" %>
+      <% end %>
+
     </div>
   </div>
+
   <p class="copy-right">CopyRight Infratop.inc</p>
 </div>
 

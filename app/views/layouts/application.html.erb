@@ -15,7 +15,7 @@
   <div class="container">
     <div class="row header">
       <div class="col-lg-6">
-        <span>Bookers</span>
+        <h4>Bookers</h4>
       </div>
       <div class="col-lg-6">
         <div id="slidemenu">
@@ -67,7 +67,6 @@
               <li class="">
                 <%= link_to new_user_session_path, class: "nav" do  %>
                   <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-
                   login
                 <% end %>
               </li>
@@ -80,7 +79,11 @@
   </nav>
   </header>
   <div class="body">
-    <%= flash[:notice] %>
+    <div class="container">
+      <div class="row">
+        <%= flash[:notice] %>
+      </div>
+    </div>
     <%= yield %>
   </div>
   </body>

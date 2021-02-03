@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+eclass UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
@@ -18,11 +18,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
- 
-
-
-
+  
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
