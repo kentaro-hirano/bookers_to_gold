@@ -1,4 +1,4 @@
-eclass UsersController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
@@ -32,11 +32,8 @@ eclass UsersController < ApplicationController
 
   private
   def user_params
-   params.require(:user).permit(:name, :profile_image, :introduction)
+   params.require(:user).permit(:name, :profile_image, :introduction, :postcode, :prefecture_name, :address_city, :address_street, :address_building)
   end
-
   
-
-
 end
 
