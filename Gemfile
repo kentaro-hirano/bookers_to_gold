@@ -70,3 +70,4 @@ gem 'font-awesome-sass', '~> 5.4.1'
 # 住所
 gem 'jquery-rails'
 gem 'jp_prefecture'
+
